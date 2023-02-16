@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthModule } from '@auth0/auth0-angular';
+import { MapsModule } from './maps/maps.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { AuthButtonComponent } from './auth-button/auth-button.component';
   ],
   imports: [
     BrowserModule,
+    MapsModule,
     AppRoutingModule,
     AuthModule.forRoot({
       domain: 'dev-jau5d5r7zymxt44k.us.auth0.com',

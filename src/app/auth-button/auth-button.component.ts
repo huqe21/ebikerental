@@ -2,7 +2,6 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { map, Observable } from 'rxjs';
-import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
   selector: 'app-auth-button',

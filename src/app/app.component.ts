@@ -8,5 +8,5 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class AppComponent {
   title = 'e-Bike Rental';
-  constructor(public auth: AuthService){}
+  constructor(){}
 }
