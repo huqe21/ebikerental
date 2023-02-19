@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GooglemapsComponent } from './maps/googlemaps/googlemaps.component';
+import { GooglemapsComponent } from './components/maps/googlemaps/googlemaps.component';
 
 const routes: Routes = [
   {path: '', component: GooglemapsComponent}
