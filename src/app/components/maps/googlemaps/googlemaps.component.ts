@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MapMarker } from '@angular/google-maps';
 import { Observable } from 'rxjs';
 import { Bike } from 'src/app/models/bike.model';
 import { DataService } from 'src/app/services/data.service';
@@ -14,6 +15,7 @@ export class GooglemapsComponent {
   zoom: number;
   center!: google.maps.LatLngLiteral;
   options: google.maps.MapOptions;
+  markers: Array<MapMarker> | undefined;
   constructor(public dataService: DataService){
     this.zoom = 15;
     this.center= { lat: 49.488160, lng: 8.465841}
@@ -46,5 +48,13 @@ export class GooglemapsComponent {
       },   ]
 
     };
+    // dataService.user$.subscribe(console.log);
   }
+  myLatlng = new google.maps.LatLng(49.488160,8.465841);
+  
+marker = new google.maps.Marker({
+      position: this.myLatlng,
+      title:"Hello World!"
+  });
+
 }
