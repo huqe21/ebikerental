@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { MapMarker } from '@angular/google-maps';
-import { Observable } from 'rxjs';
-import { Bike } from 'src/app/models/bike.model';
 import { DataService } from 'src/app/services/data.service';
+import {} from '@angular/google-maps';
+import { Station } from 'src/app/models/station.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,12 +14,12 @@ import { DataService } from 'src/app/services/data.service';
 export class GooglemapsComponent {
 
   zoom: number;
-  center!: google.maps.LatLngLiteral;
+  center!: google.maps.LatLng;
   options: google.maps.MapOptions;
   markers: Array<MapMarker> | undefined;
-  constructor(public dataService: DataService){
+  constructor(public dataService: DataService, private router: Router){
     this.zoom = 15;
-    this.center= { lat: 49.488160, lng: 8.465841}
+    this.center= this.createLatLng(49.488160, 8.465841 );
     this.options  = {
       mapTypeId: 'hybrid',
       zoomControl: false,
@@ -29,7 +30,7 @@ export class GooglemapsComponent {
       disableDefaultUI: true,
       restriction: {
         latLngBounds: {
-          east: 8.53,
+          east: 8.56,
           north: 49.52,
           south: 49.44,
           west: 8.43
@@ -46,15 +47,22 @@ export class GooglemapsComponent {
           }
         ]
       },   ]
-
+      
     };
-    // dataService.user$.subscribe(console.log);
+    dataService.station$.subscribe(console.log)
   }
-  myLatlng = new google.maps.LatLng(49.488160,8.465841);
+
+  createLatLng(p1:number, p2:number): google.maps.LatLng{
+    return new google.maps.LatLng(p1,p2);
+  }
+
+  getStationText(station: Station): string{
+    return(station.name," ", "Anzahl verfügbarer E-Bikes: ", station.countOfBikes.toString())
+  }
   
-marker = new google.maps.Marker({
-      position: this.myLatlng,
-      title:"Hello World!"
-  });
+  goToStation(station: Station){
+    this.router.navigate(['station/',station.id]);
+  }
+
 
 }

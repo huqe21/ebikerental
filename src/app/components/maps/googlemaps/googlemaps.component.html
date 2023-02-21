@@ -1,15 +1,7 @@
-<google-map
-  height="600px"
-  width="100%"
-  [zoom]="zoom"
-  [center]="center"
-  [options]="options"
-  >
-  
-<map-marker 
-*ngFor="let station of (dataService.station$ | ngrxPush)"
-[position]="myLatlng"
-[title]= "station.name"
-[label]= 'station.name'>
-</map-marker>
+<google-map height="600px" width="100%" [zoom]="zoom" [center]="center" [options]="options">
+
+  <map-marker *ngFor="let station of (dataService.station$ | ngrxPush)"
+    [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
+    [label]='getStationText(station)' (mapClick)="goToStation(station)"> 
+  </map-marker>
 </google-map>

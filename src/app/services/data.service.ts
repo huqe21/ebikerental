@@ -45,31 +45,32 @@ export class DataService {
 
   private updateObservables() {
 
+    setTimeout( () => {
+      this.getStations().subscribe(stations => {
+       if (JSON.stringify(stations) != JSON.stringify(this.stationVergleich)) {
+         this.station$$.next(stations);
+         this.stationVergleich = stations;
+       }
+     });
+   }, 5000)
+
     setTimeout(async () => {
       await this.getUsers().subscribe(users => {
-        if (JSON.stringify(users)!= JSON.stringify(this.userVergleich)) {
+        if (JSON.stringify(users) != JSON.stringify(this.userVergleich)) {
           this.userVergleich = users;
           this.user$$.next(users);
         }
       }
       )
     }, 5000)
-    setTimeout(async () => {
-      await this.getBikes().subscribe(bikes => {
-        if (JSON.stringify(bikes)!= JSON.stringify(this.bikeVergleich)) {
+    setTimeout( () => {
+     this.getBikes().subscribe(bikes => {
+        if (JSON.stringify(bikes) != JSON.stringify(this.bikeVergleich)) {
           this.bike$$.next(bikes);
           this.bikeVergleich = bikes;
         }
+        this.updateObservables();
       })
-    }, 5000)
-    setTimeout(async () => {
-      await this.getStations().subscribe(stations => {
-        if (JSON.stringify(stations)!= JSON.stringify(this.stationVergleich)) {
-          this.station$$.next(stations);
-          this.stationVergleich = stations;
-        }
-      });
-      this.updateObservables();
     }, 5000)
   }
 }

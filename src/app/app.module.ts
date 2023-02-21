@@ -6,11 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthButtonComponent } from './components/auth-button/auth-button.component';
+import { StationViewComponent } from './components/station-view/station-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthButtonComponent
+    AuthButtonComponent,
+    StationViewComponent
   ],
   imports: [
     BrowserModule,
