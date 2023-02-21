@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { MapMarker } from '@angular/google-maps';
 import { DataService } from 'src/app/services/data.service';
 import {} from '@angular/google-maps';
@@ -11,13 +11,15 @@ import { Router } from '@angular/router';
   templateUrl: './googlemaps.component.html',
   styleUrls: ['./googlemaps.component.scss']
 })
-export class GooglemapsComponent {
+export class GooglemapsComponent implements AfterViewInit{
 
-  zoom: number;
+  zoom!: number;
   center!: google.maps.LatLng;
-  options: google.maps.MapOptions;
-  markers: Array<MapMarker> | undefined;
+  options!: google.maps.MapOptions;
   constructor(public dataService: DataService, private router: Router){
+    dataService.station$.subscribe(console.log)
+  }
+  ngAfterViewInit(): void {
     this.zoom = 15;
     this.center= this.createLatLng(49.488160, 8.465841 );
     this.options  = {
@@ -49,7 +51,6 @@ export class GooglemapsComponent {
       },   ]
       
     };
-    dataService.station$.subscribe(console.log)
   }
 
   createLatLng(p1:number, p2:number): google.maps.LatLng{
