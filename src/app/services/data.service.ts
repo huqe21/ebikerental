@@ -80,5 +80,6 @@ export class DataService {
         this.updateObservables();
       })
     }, 5000)
+    this.station$.subscribe(console.log);
   }
 }

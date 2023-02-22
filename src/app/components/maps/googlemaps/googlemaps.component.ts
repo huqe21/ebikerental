@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import {} from '@angular/google-maps';
 import { Station } from 'src/app/models/station.model';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class GooglemapsComponent implements AfterViewInit{
   zoom!: number;
   center!: google.maps.LatLng;
   options!: google.maps.MapOptions;
-  constructor(public dataService: DataService, private router: Router){
+  constructor(public dataService: DataService, private router: Router, private auth: AuthService){
   }
   ngAfterViewInit(): void {
     this.zoom = 15;
@@ -31,8 +32,8 @@ export class GooglemapsComponent implements AfterViewInit{
       restriction: {
         latLngBounds: {
           east: 8.56,
-          north: 49.52,
-          south: 49.44,
+          north: 49.50,
+          south: 49.46,
           west: 8.43
         },
         strictBounds: true
@@ -56,11 +57,19 @@ export class GooglemapsComponent implements AfterViewInit{
   }
 
   getStationText(station: Station): string{
-    return(station.name," ", "Anzahl verfügbarer E-Bikes: ", station.countOfBikes.toString())
+    return(station.name," ", "Anzahl verfügbarer E-Bikes: ", station.maxCountOfBikes.toString())
   }
   
   goToStation(station: Station){
+    let isauth: boolean = false;
+    this.auth.isAuthenticated$.subscribe(val => isauth = val);
+
+    if(!isauth){
+      this.auth.loginWithRedirect();
+    }
+    else{
     this.router.navigate(['station'], { queryParams:{id: station.id}});
+    }
   }
 
 

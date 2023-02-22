@@ -4,4 +4,5 @@ export interface Station{
     longitude: number;
     latitude: number;
     countOfBikes: number;
+    maxCountOfBikes:number;
 }

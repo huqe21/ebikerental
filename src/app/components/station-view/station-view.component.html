@@ -12,8 +12,13 @@
 </div>
 <div *ngFor="let bike of (dataService.bike$ |async)">
     <div *ngIf="getCurrentStationID()== bike.station">
-        <div (click)="ausleihen(bike)" class="bike">
-            {{bike.name}}
+        <div (click)="ausleihen(bike)" class="container">
+            <div class="content">
+                <h1> {{bike.name}}</h1>
+                <h3>I love designing websites and keep things as simple as possible. My goals is to focus on minimalism and conveying the message that you want to send</h3>
+              </div>
+              <div class="flap"></div>
+            
         </div>
     </div>
 </div>
