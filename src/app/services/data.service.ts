@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { BehaviorSubject, map, Observable, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Bike } from '../models/bike.model';
 import { Station } from '../models/station.model';
 import { User } from '../models/user.model';
@@ -81,6 +80,5 @@ export class DataService {
         this.updateObservables();
       })
     }, 5000)
-    console.log(this.getToken())
   }
 }

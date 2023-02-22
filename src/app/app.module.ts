@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthButtonComponent } from './components/auth-button/auth-button.component';
 import { StationViewComponent } from './components/station-view/station-view.component';
+import { RentComponent } from './components/rent/rent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthButtonComponent,
-    StationViewComponent
+    StationViewComponent,
+    RentComponent
   ],
   imports: [
     BrowserModule,
