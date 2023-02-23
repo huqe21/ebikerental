@@ -5,13 +5,14 @@ import { Station } from 'src/app/models/station.model';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 
-
 @Component({
   selector: 'app-googlemaps',
   templateUrl: './googlemaps.component.html',
   styleUrls: ['./googlemaps.component.scss']
 })
 export class GooglemapsComponent implements AfterViewInit{
+
+  markerIcon = { url: "assets/marker.png", size: new google.maps.Size(80,80), scaledSize: new google.maps.Size(80,80)};
 
   zoom!: number;
   center!: google.maps.LatLng;

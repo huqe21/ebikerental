@@ -15,6 +15,19 @@ export class RentComponent {
     this.activeRoute.queryParamMap.subscribe(params => this.activeBike= params.get('id')||'')
     return +this.activeBike;
   }
+  private getFallbackStation():string{
+      let station: string='';
+      this.activeRoute.queryParamMap.subscribe(params => station= params.get('station')||'');
+      return station;
+
+    }
+  public goBack() {
+    this.router.navigate(['station'],{queryParams:{station:this.getFallbackStation() }});
+  }
+  public ausleihen(){
+    this.dataService.lentBike(this.getCurrentBikeID());
+    this.router.navigate(['success'], {queryParams:{bike: this.getCurrentBikeID(), station: this.getFallbackStation()}})
+  }
   
   }
   

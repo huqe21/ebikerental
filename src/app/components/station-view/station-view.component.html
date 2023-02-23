@@ -10,16 +10,13 @@
     </div>
 
 </div>
-<div *ngFor="let bike of (dataService.bike$ |async)">
+<div *ngFor="let bike of (dataService.bike$ |async)" class="info">
     <div *ngIf="getCurrentStationID()== bike.station">
-        <div (click)="ausleihen(bike)" class="container">
-            <div class="content">
+        <div (click)="ausleihen(bike)" class="bike">
                 <h1> {{bike.name}}</h1>
-                <h3>I love designing websites and keep things as simple as possible. My goals is to focus on minimalism and conveying the message that you want to send</h3>
-              </div>
-              <div class="flap"></div>
             
         </div>
+        <div class="spacer"></div>
     </div>
 </div>
 <div class="back">

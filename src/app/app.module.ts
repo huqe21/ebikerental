@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { AuthButtonComponent } from './components/auth-button/auth-button.component';
 import { StationViewComponent } from './components/station-view/station-view.component';
 import { RentComponent } from './components/rent/rent.component';
+import { SuccessComponent } from './components/success/success.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthButtonComponent,
     StationViewComponent,
-    RentComponent
+    RentComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,

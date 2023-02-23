@@ -29,7 +29,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 70px;
     display: flex;
     align-items: center;
     background-color: #000000;
@@ -263,4 +263,8 @@
 
 .auth-button{
   padding-right: 20px;
+}
+
+.image{
+  height: 65px;
 }

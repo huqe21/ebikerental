@@ -13,6 +13,7 @@ export class DataService {
 
   private apiURL: string = 'http://localhost:80/api/';
   private token: string | undefined;
+  private email: string | undefined;
 
   private userVergleich: Array<User> = new Array<User>;
   private bikeVergleich: Array<Bike> = new Array<Bike>;
@@ -32,6 +33,8 @@ export class DataService {
     this.getBikes().subscribe(bikes => this.bike$$.next(bikes));
     this.getUsers().subscribe(users => this.user$$.next(users));
     this.getStations().subscribe(stations => this.station$$.next(stations));
+    this.getEMail();
+    this.getToken();
     this.updateObservables();
   }
 
@@ -45,6 +48,21 @@ export class DataService {
 
   private getStations(): Observable<Station[]> {
     return this.httpClient.get<Station[]>(this.apiURL + 'get.php/?f=getStation')
+  }
+
+  public lentBike(bikeID: number) {
+   return this.httpClient.post(this.apiURL+'update.php/?f=lent&email='+this.getEMail()+'&bike='+bikeID,{}).subscribe()
+  }
+
+  private getEMail():string | undefined{
+    this.auth.user$.pipe(map(user =>{ this.email= user?.email})).subscribe();
+    return this.email;
+  }
+
+  public returnBike(bikeID:number, stationID:number){
+    let email: string | undefined = '';
+    this.auth.user$.subscribe(user => email= user?.email)
+    this.httpClient.post(this.apiURL+'update.php/?f=returnbike&email='+email+'&bike='+bikeID+'&station=',stationID)
   }
 
   private getToken(): string | undefined{
@@ -80,6 +98,5 @@ export class DataService {
         this.updateObservables();
       })
     }, 5000)
-    this.station$.subscribe(console.log);
   }
 }

@@ -13,6 +13,7 @@ box-sizing: border-box;
 .info{
     grid-column: 2;
     padding-left: 5%;
+    cursor: -webkit-grab;
 }
 .bike{
     background-color: rgba(202, 202, 202, 0.367);
@@ -21,6 +22,9 @@ box-sizing: border-box;
 }
 .back{
     padding-top: 10px;
+}
+.spacer{
+  padding-top: 10px
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&display=swap');
