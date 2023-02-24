@@ -12,11 +12,11 @@
 </div>
 <div *ngFor="let bike of (dataService.bike$ |async)" class="info">
     <div *ngIf="getCurrentStationID()== bike.station">
-        <div (click)="ausleihen(bike)" class="bike">
-                <h1> {{bike.name}}</h1>
+        <div (click)="ausleihen(bike)" class="card">
+                <h3> {{bike.name}}</h3>
+                <span class="price"> 0.10€/Minute</span>
             
         </div>
-        <div class="spacer"></div>
     </div>
 </div>
 <div class="back">

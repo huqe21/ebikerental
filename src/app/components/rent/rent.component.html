@@ -1,9 +1,21 @@
-<p>rent works!</p>
-{{getCurrentBikeID() }}
-
-<div><button (click)="ausleihen()">Kostenpflichtig Ausleihen</button>
-</div>
-
-<div class="back">
-    <button (click)="goBack()">Back</button>
-</div>
+<div class="checkout">
+    <h2>Checkout</h2>
+    <div class="checkout-card">
+      <div class="checkout-card-image">
+        <img src="https://via.placeholder.com/200x150" alt="Bike Image">
+      </div>
+      <div class="checkout-card-details">
+        <h3>E-Bike-ID: {{getCurrentBikeID() }}
+        </h3>
+        <p>Standort: {{getStandort()}}</p>
+        <div class="checkout-card-price">
+          <span>Price: </span><span>$50</span>
+        </div>
+        <div class="checkout-card-button">
+            <span><button (click)="ausleihen()">Kostenpflichtig Ausleihen</button></span>
+            
+            <span class="back"><button (click)="goBack()" class="back">Back</button></span>
+        </div>
+      </div>
+    </div>
+  </div>

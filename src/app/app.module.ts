@@ -16,7 +16,7 @@ import { SuccessComponent } from './components/success/success.component';
     AuthButtonComponent,
     StationViewComponent,
     RentComponent,
-    SuccessComponent
+    SuccessComponent,
   ],
   imports: [
     BrowserModule,

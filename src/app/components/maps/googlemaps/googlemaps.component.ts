@@ -58,7 +58,12 @@ export class GooglemapsComponent implements AfterViewInit{
   }
 
   getStationText(station: Station): string{
-    return(station.name," ", "Anzahl verfügbarer E-Bikes: ", station.maxCountOfBikes.toString())
+    if(station.countOfBikes){
+      return station.countOfBikes.toString();
+    }
+    else {
+      return Number(0).toString();
+    }
   }
   
   goToStation(station: Station){

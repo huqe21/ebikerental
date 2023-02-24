@@ -98,5 +98,5 @@ export class DataService {
         this.updateObservables();
       })
     }, 5000)
-  }
+  } 
 }
