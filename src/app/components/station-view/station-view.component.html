@@ -1,27 +1,27 @@
 <div class="grid">
-<div class="maps">
-<app-googlemaps></app-googlemaps>
-</div>
-<div class="info">
-<div *ngFor=" let station of (dataService.station$|async)">
-    <div *ngIf="station.id == getCurrentStationID()">
-     <h2>{{station.name }}</h2>  
-
+    <div class="maps">
+        <app-googlemaps></app-googlemaps>
     </div>
+    <div class="info">
+        <div *ngFor=" let station of (dataService.station$|async)">
+            <div *ngIf="station.id == getCurrentStationID()">
+                <h2>{{station.name }}</h2>
 
-</div>
-<div *ngFor="let bike of (dataService.bike$ |async)" class="info">
-    <div *ngIf="getCurrentStationID()== bike.station">
-        <div (click)="ausleihen(bike)" class="card">
-                <h3> {{bike.name}}</h3>
-                <span class="price"> 0.10€/Minute</span>
-            
+            </div>
+
         </div>
-    </div>
-</div>
-<div class="back">
-    <button (click)="goBack()">Back</button>
-</div>
+        <div *ngFor="let bike of (dataService.bike$ |async)" class="info">
+            <div *ngIf="getCurrentStationID()== bike.station">
+                <div (click)="ausleihen(bike)" class="card">
+                    <h3> {{bike.name}}</h3>
+                    <span class="price"> 0.10€/Minute</span>
 
-</div>
+                </div>
+            </div>
+        </div>
+        <div class="back">
+            <button (click)="goBack()">Back</button>
+        </div>
+
+    </div>
 </div>

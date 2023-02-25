@@ -1,17 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 button {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 4px;
-    background-color: #f6c242;
-    color: #fff;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  
-    &:hover {
-      background-color: darken(#f6c242, 10%);
-    }
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: #f6c242;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: darken(#f6c242, 10%);
   }
+}

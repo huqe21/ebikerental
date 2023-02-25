@@ -9,6 +9,7 @@ import { AuthButtonComponent } from './components/auth-button/auth-button.compon
 import { StationViewComponent } from './components/station-view/station-view.component';
 import { RentComponent } from './components/rent/rent.component';
 import { SuccessComponent } from './components/success/success.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SuccessComponent } from './components/success/success.component';
   ],
   imports: [
     BrowserModule,
+    GoogleMapsModule,
     MapsModule,
     HttpClientModule,
     AppRoutingModule,

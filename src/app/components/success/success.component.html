@@ -1,2 +1,31 @@
-<p>success works!</p>
-Ebike mit der ID {{ getBikeID()}} kann an der Station mit der ID {{ getStationID()}}
+<span *ngFor="let station of (dataService.station$ | async)">
+    <span *ngIf="station.id.toString()=== getStationID()">
+        <div class="maps">
+            <google-map height="400px" width="100%" [zoom]="15"
+                [center]="createLatLng(station.latitude, station.longitude)" [options]="options">Í
+                <map-marker [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
+                    [icon]="markerIcon"> 
+                </map-marker>
+
+            </google-map>
+        </div>
+        <div class="confirmation">
+            <h2>Thank you for renting with us!</h2>
+            <p>Your E-Bike rental has been confirmed. </p>
+            <div class="confirmation-details">
+                <div class="confirmation-detail">
+                    <span class="confirmation-detail-label">Bike Model:</span>
+                    <span class="confirmation-detail-value">Bike Model Name</span>
+                </div>
+                <div class="confirmation-detail">
+                    <span class="confirmation-detail-label">Standort</span>
+                    <span class="confirmation-detail-value"> {{station.name}}</span>
+                </div>
+                <div class="confirmation-detail">
+                    <span class="confirmation-detail-label">Total Price:</span>
+                    <span class="confirmation-detail-value">$250</span>
+                </div>
+            </div>
+        </div>
+    </span>
+</span>

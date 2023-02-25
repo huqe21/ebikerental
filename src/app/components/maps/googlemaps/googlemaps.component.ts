@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import {} from '@angular/google-maps';
+import { } from '@angular/google-maps';
 import { Station } from 'src/app/models/station.model';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
@@ -10,19 +10,19 @@ import { AuthService } from '@auth0/auth0-angular';
   templateUrl: './googlemaps.component.html',
   styleUrls: ['./googlemaps.component.scss']
 })
-export class GooglemapsComponent implements AfterViewInit{
+export class GooglemapsComponent implements AfterViewInit {
 
-  markerIcon = { url: "assets/marker.png", size: new google.maps.Size(80,80), scaledSize: new google.maps.Size(80,80)};
+  markerIcon = { url: "assets/marker.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
 
   zoom!: number;
   center!: google.maps.LatLng;
   options!: google.maps.MapOptions;
-  constructor(public dataService: DataService, private router: Router, private auth: AuthService){
+  constructor(public dataService: DataService, private router: Router, private auth: AuthService) {
   }
   ngAfterViewInit(): void {
     this.zoom = 15;
-    this.center= this.createLatLng(49.488160, 8.465841 );
-    this.options  = {
+    this.center = this.createLatLng(49.488160, 8.465841);
+    this.options = {
       mapTypeId: 'hybrid',
       zoomControl: false,
       scrollwheel: true,
@@ -39,42 +39,42 @@ export class GooglemapsComponent implements AfterViewInit{
         },
         strictBounds: true
       },
-      clickableIcons:false,
-      styles: [   {     "elementType": "labels",     "stylers": [       {         "visibility": "off"       }     ]   },   {     "featureType": "administrative.land_parcel",     "stylers": [       {         "visibility": "off"       }     ]   }
-      ,{
+      clickableIcons: false,
+      styles: [{ "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative.land_parcel", "stylers": [{ "visibility": "off" }] }
+        , {
         "featureType": "road.highway",
         "stylers": [
           {
             "visibility": "off"
           }
         ]
-      },   ]
-      
+      },]
+
     };
   }
 
-  createLatLng(p1:number, p2:number): google.maps.LatLng{
-    return new google.maps.LatLng(p1,p2);
+  createLatLng(p1: number, p2: number): google.maps.LatLng {
+    return new google.maps.LatLng(p1, p2);
   }
 
-  getStationText(station: Station): string{
-    if(station.countOfBikes){
+  getStationText(station: Station): string {
+    if (station.countOfBikes) {
       return station.countOfBikes.toString();
     }
     else {
       return Number(0).toString();
     }
   }
-  
-  goToStation(station: Station){
+
+  goToStation(station: Station) {
     let isauth: boolean = false;
     this.auth.isAuthenticated$.subscribe(val => isauth = val);
 
-    if(!isauth){
+    if (!isauth) {
       this.auth.loginWithRedirect();
     }
-    else{
-    this.router.navigate(['station'], { queryParams:{id: station.id}});
+    else {
+      this.router.navigate(['station'], { queryParams: { id: station.id } });
     }
   }
 

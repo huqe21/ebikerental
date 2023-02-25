@@ -19,7 +19,7 @@ export class DataService {
   private bikeVergleich: Array<Bike> = new Array<Bike>;
   private stationVergleich: Array<Station> = new Array<Station>;
 
-  private user$$: BehaviorSubject<User[]>= new BehaviorSubject(this.userVergleich);
+  private user$$: BehaviorSubject<User[]> = new BehaviorSubject(this.userVergleich);
   private bike$$: BehaviorSubject<Bike[]> = new BehaviorSubject(this.bikeVergleich);
   private station$$: BehaviorSubject<Station[]> = new BehaviorSubject(this.stationVergleich);
 
@@ -27,7 +27,7 @@ export class DataService {
   public bike$: Observable<Bike[]> = this.bike$$.asObservable();
   public station$: Observable<Station[]> = this.station$$.asObservable();
 
-  
+
 
   constructor(private httpClient: HttpClient, private auth: AuthService) {
     this.getBikes().subscribe(bikes => this.bike$$.next(bikes));
@@ -49,24 +49,26 @@ export class DataService {
   private getStations(): Observable<Station[]> {
     return this.httpClient.get<Station[]>(this.apiURL + 'get.php/?f=getStation')
   }
-
+  public getStationsArray(): Array<Station>{
+    return this.stationVergleich;
+  }
   public lentBike(bikeID: number) {
-   return this.httpClient.post(this.apiURL+'update.php/?f=lent&email='+this.getEMail()+'&bike='+bikeID,{}).subscribe()
+    return this.httpClient.post(this.apiURL + 'update.php/?f=lent&email=' + this.getEMail() + '&bike=' + bikeID, {}).subscribe()
   }
 
-  private getEMail():string | undefined{
-    this.auth.user$.pipe(map(user =>{ this.email= user?.email})).subscribe();
+  private getEMail(): string | undefined {
+    this.auth.user$.pipe(map(user => { this.email = user?.email })).subscribe();
     return this.email;
   }
 
-  public returnBike(bikeID:number, stationID:number){
+  public returnBike(bikeID: number, stationID: number) {
     let email: string | undefined = '';
-    this.auth.user$.subscribe(user => email= user?.email)
-    this.httpClient.post(this.apiURL+'update.php/?f=returnbike&email='+email+'&bike='+bikeID+'&station=',stationID)
+    this.auth.user$.subscribe(user => email = user?.email)
+    this.httpClient.post(this.apiURL + 'update.php/?f=returnbike&email=' + email + '&bike=' + bikeID + '&station=', stationID)
   }
 
-  private getToken(): string | undefined{
-    this.auth.idTokenClaims$.pipe(map(token =>  this.token=token?.__raw)).subscribe()
+  private getToken(): string | undefined {
+    this.auth.idTokenClaims$.pipe(map(token => this.token = token?.__raw)).subscribe()
     return this.token;
   }
   private updateObservables() {
@@ -98,5 +100,5 @@ export class DataService {
         this.updateObservables();
       })
     }, 5000)
-  } 
+  }
 }
