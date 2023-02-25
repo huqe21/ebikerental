@@ -3,7 +3,12 @@
   <img src="assets/logo.png" class="image">
   <div class="title">E-Bike Rental Mannheim</div>
   <div class="spacer"></div>
-
+  <nav>
+  <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+  <a routerLink="/rent" routerLinkActive="active" ariaCurrentWhenActive="page">Rent a E-Bike</a> 
+  <a *ngIf="(auth.isAuthenticated$|async)" routerLink="/return" routerLinkActive="active" ariaCurrentWhenActive="page">Return E-Bike</a>
+  <a routerLink="/about-us" routerLinkActive="active" ariaCurrentWhenActive="page">About Us</a>     
+  </nav>
   <app-auth-button class="auth-button"></app-auth-button>
   <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
     <title>Gray Clouds Background</title>
