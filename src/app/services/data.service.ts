@@ -15,15 +15,15 @@ export class DataService {
   private token: string | undefined;
   private email: string | undefined;
 
-  private userVergleich: Array<User> = new Array<User>;
+  private userVergleich!: User;
   private bikeVergleich: Array<Bike> = new Array<Bike>;
   private stationVergleich: Array<Station> = new Array<Station>;
 
-  private user$$: ReplaySubject<User[]> = new ReplaySubject(1);
+  private user$$: ReplaySubject<User> = new ReplaySubject(1);
   private bike$$: ReplaySubject<Bike[]> = new ReplaySubject(1);
   private station$$: ReplaySubject<Station[]> = new ReplaySubject(1);
 
-  public user$: Observable<User[]> = this.user$$.asObservable();
+  public user$: Observable<User> = this.user$$.asObservable();
   public bike$: Observable<Bike[]> = this.bike$$.asObservable();
   public station$: Observable<Station[]> = this.station$$.asObservable();
 
@@ -38,8 +38,8 @@ export class DataService {
     this.updateObservables();
   }
 
-  private getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(this.apiURL + 'get.php/?f=getUser&email='+this.getEMail()+'&token='+this.getToken());
+  private getUsers(): Observable<User> {
+    return this.httpClient.get<User>(this.apiURL + 'get.php/?f=getUser&email='+this.getEMail()+'&token='+this.getToken());
   }
 
   private getBikes(): Observable<Bike[]> {
@@ -52,12 +52,13 @@ export class DataService {
   public getStationsArray(): Array<Station>{
     return this.stationVergleich;
   }
-  public lentBike(bikeID: number):Observable<String> {
+  public rentBike(bikeID: number):Observable<String> {
     return this.httpClient.get<String>(this.apiURL + 'update.php/?f=rent&email=' + this.getEMail() + '&bike=' + bikeID + '&token='+this.getToken());
   }
 
-  public returnBike(bikeID: number, stationID: number) {
-    this.httpClient.get(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
+  public returnBike(bikeID: number, stationID: number):Observable<String> {
+    console.log(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
+   return this.httpClient.get<String>(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
   }
 
 

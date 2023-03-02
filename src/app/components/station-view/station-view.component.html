@@ -14,8 +14,10 @@
             <div *ngIf="getCurrentStationID()== bike.station">
                 <div (click)="ausleihen(bike)" class="card">
                     <h3> {{bike.name}}</h3>
-                    <h6>Premium E-Bike</h6>
-                    <span class="price"> 0.10€/Minute</span>
+                    <span *ngIf="bike.premium==1">Premium E-Bike</span>
+
+                    <span *ngIf="bike.premium==0 "class="price"> 0.10€/Minute</span>
+                    <span *ngIf="bike.premium==1 "class="price"> 0.15 €/Minute</span>
 
                 </div>
             </div>

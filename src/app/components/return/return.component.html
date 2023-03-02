@@ -8,7 +8,7 @@
         </google-map>
     </span>
     <span *ngFor="let station of (dataService.station$ | async)">
-        <span  *ngIf="(station.name == selectedStation)&& selectedStation !== null">
+        <span  *ngIf="(station.id == selectedStation)&& selectedStation !== null">
              <google-map height="400px" width="800px" [zoom]="zoom" [center]="createLatLng(station.latitude,station.longitude)" [options]="options">
                 <map-marker 
                     [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
@@ -17,14 +17,16 @@
              </google-map>
         </span>
     </span>
+    <span *ngrxLet="dataService.user$ as user" >
     <h1 class="title">Return Bike</h1>
     <form class="form-container">
         <div class="form-group">
-            <label for="station-dropdown">Select Return Station:</label>
+            <label for="station-dropdown">Select Return Station for E-Bike {{user.bike}} :</label>
             <select id="station-dropdown" [(ngModel)]="selectedStation" name="station">
-                <option *ngFor="let station of stations" [value]="station.name">{{ station.name }}</option>
+                <option *ngFor="let station of stations" [value]="station.id">{{ station.name }}</option>
             </select>
         </div>
     </form>
-    <button class="return-button" (click)="returnBike(selectedStation)">Return Bike</button>
+    <button class="return-button" (click)="returnBike(selectedStation, user.bike)">Return Bike</button>
+    </span>
 </div>

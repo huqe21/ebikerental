@@ -29,7 +29,7 @@ export class RentComponent{
     this.router.navigate(['station'],{queryParams:{station:this.getFallbackStation() }});
   }
   public ausleihen(){
-    this.dataService.lentBike(this.getCurrentBikeID()).subscribe();
+    this.dataService.rentBike(this.getCurrentBikeID()).subscribe();
     this.router.navigate(['success'], {queryParams:{bike: this.getCurrentBikeID(), station: this.getFallbackStation()}})
   }
 

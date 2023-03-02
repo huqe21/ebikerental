@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Station } from 'src/app/models/station.model';
+import { User } from 'src/app/models/user.model';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,16 +13,18 @@ export class ReturnComponent implements OnInit {
   zoom: number = 16;
   defaultZoom:number = 15;
   stations?: Array<Station>;
-  selectedStation!: String;
+  selectedStation!: number;
   options!: google.maps.MapOptions;
   markerIcon = { url: "assets/marker.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
 
-  returnBike(station: String): void {
-    // Do something with the selected station name, such as return the bike to that station
-    console.log(`Bike returned to ${station}`);
+  returnBike(stationID: number, bikeID: number): void {
+    const temp = this.dataService.returnBike(bikeID, stationID).subscribe(console.log);
+    this.router.navigate(['return-success'],{queryParams:{bikeID: bikeID, stationID:stationID }});
+    temp.unsubscribe();
+
   }
 
-  constructor(public dataService: DataService){
+  constructor(public dataService: DataService, private router: Router){
   }
   
   ngOnInit(): void {

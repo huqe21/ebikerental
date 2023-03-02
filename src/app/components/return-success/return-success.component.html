@@ -1,0 +1,35 @@
+<span *ngFor="let station of (dataService.station$ | ngrxPush)">
+    <span *ngIf="station.id.toString()=== getStationID()">
+        <div class="maps">
+            <google-map height="400px" width="100%" [zoom]="15"
+                [center]="createLatLng(station.latitude, station.longitude)" [options]="options">Í
+                <map-marker [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
+                    [icon]="markerIcon"> 
+                </map-marker>
+
+            </google-map>
+        </div>
+        <span *ngFor=" let bike of (dataService.bike$ | ngrxPush)">
+            <span *ngIf=" bike.id== +getBikeID()">
+                <div class="confirmation">
+            <h2>Thank you for renting with us!</h2>
+            <p>The return of Your Bike at {{station.name}} has been successfull. You will receive an invoice via E-Mail shortly. </p>
+            <div class="confirmation-details">
+                <div class="confirmation-detail">
+                    <span class="confirmation-detail-label">E-Bike Model:</span>
+                    <span class="confirmation-detail-value">E-Bike {{bike.id}}</span>
+                </div>
+                <div class="confirmation-detail">
+                    <span class="confirmation-detail-label">Rückgabeort</span>
+                    <span class="confirmation-detail-value"> {{station.name}}</span>
+                </div>
+                <div class="confirmation-detail">
+                    <span class="confirmation-detail-label">Total Price:</span>
+                    <span class="confirmation-detail-value">$250</span>
+                </div>
+            </div>
+        </div>
+        </span>
+    </span>
+    </span>
+</span>

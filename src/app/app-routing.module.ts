@@ -7,6 +7,7 @@ import { SuccessComponent } from './components/success/success.component';
 import { ReturnComponent } from './components/return/return.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
+import { ReturnSuccessComponent } from './components/return-success/return-success.component';
 
 const routes: Routes = [
   {path: 'station', component: StationViewComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'checkout', component: RentComponent},
   {path: 'success', component: SuccessComponent},
   {path: 'return', component: ReturnComponent},
+  {path: 'return-success', component: ReturnSuccessComponent},
   {path: 'about-us', component: AboutComponent},
   {path: '', component: HomeComponent},
   {path: '*', component: HomeComponent}
