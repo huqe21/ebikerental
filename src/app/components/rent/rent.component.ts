@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Station } from 'src/app/models/station.model';
 import { DataService } from 'src/app/services/data.service';
@@ -8,13 +8,15 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './rent.component.html',
   styleUrls: ['./rent.component.scss']
 })
-export class RentComponent {
+export class RentComponent{
   private activeBike: string= '';
   private stations:Station[]= new Array<Station>();
   constructor(private router: Router, private activeRoute: ActivatedRoute, public dataService: DataService) { }
+
   
   getCurrentBikeID(): number {
-    this.activeRoute.queryParamMap.subscribe(params => this.activeBike= params.get('id')||'')
+   this.activeRoute.queryParamMap.subscribe(params => this.activeBike= params.get('id')||'');
+   
     return +this.activeBike;
   }
   private getFallbackStation():number{

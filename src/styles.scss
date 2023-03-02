@@ -15,3 +15,21 @@ button {
     background-color: darken(#f6c242, 10%);
   }
 }
+
+a {
+  color: #fff;
+  padding: 15px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  &:link{
+    color: #fff;
+  }
+
+  &:hover {
+    color: darken(#f6c242, 10%);
+  }
+
+  &.active {
+    color: #f6c242;
+  }
+}

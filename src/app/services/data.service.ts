@@ -11,7 +11,7 @@ import { User } from '../models/user.model';
 })
 export class DataService {
 
-  private apiURL: string = 'http://localhost:80/api/';
+  private apiURL: string = 'http://localhost:80/ebike-backend/';
   private token: string | undefined;
   private email: string | undefined;
 
@@ -53,7 +53,7 @@ export class DataService {
     return this.stationVergleich;
   }
   public lentBike(bikeID: number) {
-    return this.httpClient.post(this.apiURL + 'update.php/?f=lent&email=' + this.getEMail() + '&bike=' + bikeID, {}).subscribe()
+    return this.httpClient.get(this.apiURL + 'update.php/?f=lent&email=' + this.getEMail() + '&bike=' + bikeID).subscribe()
   }
 
   private getEMail(): string | undefined {
@@ -100,5 +100,6 @@ export class DataService {
         this.updateObservables();
       })
     }, 5000)
+    console.log(this.getToken())
   }
 }

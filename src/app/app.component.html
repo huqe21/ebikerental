@@ -5,7 +5,7 @@
   <div class="spacer"></div>
   <nav>
   <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
-  <a routerLink="/rent" routerLinkActive="active" ariaCurrentWhenActive="page">Rent a E-Bike</a> 
+  <a routerLink="/ausleihen" routerLinkActive="active" ariaCurrentWhenActive="page"> Rent a E-Bike</a> 
   <a *ngIf="(auth.isAuthenticated$|async)" routerLink="/return" routerLinkActive="active" ariaCurrentWhenActive="page">Return E-Bike</a>
   <a routerLink="/about-us" routerLinkActive="active" ariaCurrentWhenActive="page">About Us</a>     
   </nav>

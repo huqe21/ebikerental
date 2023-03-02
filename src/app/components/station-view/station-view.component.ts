@@ -25,6 +25,6 @@ export class StationViewComponent {
 
   public ausleihen(bike: Bike)
   {
-    this.router.navigate(['ausleihen'], {queryParams:{id:bike.id, station:this.getCurrentStationID()}})
+    this.router.navigate(['checkout'], {queryParams:{id:bike.id, station:this.getCurrentStationID()}})
   }
 }

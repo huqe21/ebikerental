@@ -10,6 +10,10 @@ import { StationViewComponent } from './components/station-view/station-view.com
 import { RentComponent } from './components/rent/rent.component';
 import { SuccessComponent } from './components/success/success.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ReturnComponent } from './components/return/return.component';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +22,13 @@ import { GoogleMapsModule } from '@angular/google-maps';
     StationViewComponent,
     RentComponent,
     SuccessComponent,
+    ReturnComponent,
+    HomeComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     GoogleMapsModule,
     MapsModule,
     HttpClientModule,
