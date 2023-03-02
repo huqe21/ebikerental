@@ -9,6 +9,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ReturnComponent implements OnInit {
   zoom: number = 16;
+  defaultZoom:number = 15;
   stations?: Array<Station>;
   selectedStation!: String;
   options!: google.maps.MapOptions;

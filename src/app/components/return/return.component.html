@@ -1,17 +1,26 @@
 <div class="return-bike-container">
+    <span *ngIf="selectedStation==null">
+        <google-map height="400px" width="800px" [zoom]="defaultZoom" [center]="createLatLng(49.488160, 8.465841)" [options]="options">
+            <map-marker *ngFor="let station of (dataService.station$ | ngrxPush)"
+                    [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
+                    [icon]="markerIcon">
+            </map-marker> 
+        </google-map>
+    </span>
     <span *ngFor="let station of (dataService.station$ | async)">
-        <span  *ngIf="station.name == selectedStation">
-    <google-map height="400px" width="800px" [zoom]="zoom" [center]="createLatLng(station.latitude,station.longitude)" [options]="options">
-            <map-marker 
-            [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
-      [icon]="markerIcon"></map-marker> 
-    </google-map>
+        <span  *ngIf="(station.name == selectedStation)&& selectedStation !== null">
+             <google-map height="400px" width="800px" [zoom]="zoom" [center]="createLatLng(station.latitude,station.longitude)" [options]="options">
+                <map-marker 
+                    [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
+                    [icon]="markerIcon">
+                </map-marker> 
+             </google-map>
         </span>
-</span>
+    </span>
     <h1 class="title">Return Bike</h1>
     <form class="form-container">
         <div class="form-group">
-            <!-- <label for="station-dropdown">Select Return Station:</label> -->
+            <label for="station-dropdown">Select Return Station:</label>
             <select id="station-dropdown" [(ngModel)]="selectedStation" name="station">
                 <option *ngFor="let station of stations" [value]="station.name">{{ station.name }}</option>
             </select>

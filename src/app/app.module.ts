@@ -14,6 +14,7 @@ import { ReturnComponent } from './components/return/return.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
+import { PushModule } from '@ngrx/component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AboutComponent } from './components/about/about.component';
   imports: [
     BrowserModule,
     FormsModule,
+    PushModule,
     GoogleMapsModule,
     MapsModule,
     HttpClientModule,

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { map, Observable, ReplaySubject } from 'rxjs';
 import { Bike } from '../models/bike.model';
 import { Station } from '../models/station.model';
 import { User } from '../models/user.model';
@@ -19,9 +19,9 @@ export class DataService {
   private bikeVergleich: Array<Bike> = new Array<Bike>;
   private stationVergleich: Array<Station> = new Array<Station>;
 
-  private user$$: BehaviorSubject<User[]> = new BehaviorSubject(this.userVergleich);
-  private bike$$: BehaviorSubject<Bike[]> = new BehaviorSubject(this.bikeVergleich);
-  private station$$: BehaviorSubject<Station[]> = new BehaviorSubject(this.stationVergleich);
+  private user$$: ReplaySubject<User[]> = new ReplaySubject(1);
+  private bike$$: ReplaySubject<Bike[]> = new ReplaySubject(1);
+  private station$$: ReplaySubject<Station[]> = new ReplaySubject(1);
 
   public user$: Observable<User[]> = this.user$$.asObservable();
   public bike$: Observable<Bike[]> = this.bike$$.asObservable();
@@ -39,7 +39,7 @@ export class DataService {
   }
 
   private getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(this.apiURL + 'get.php/?f=getUser');
+    return this.httpClient.get<User[]>(this.apiURL + 'get.php/?f=getUser&email='+this.getEMail()+'&token='+this.getToken());
   }
 
   private getBikes(): Observable<Bike[]> {
@@ -52,19 +52,18 @@ export class DataService {
   public getStationsArray(): Array<Station>{
     return this.stationVergleich;
   }
-  public lentBike(bikeID: number) {
-    return this.httpClient.get(this.apiURL + 'update.php/?f=lent&email=' + this.getEMail() + '&bike=' + bikeID).subscribe()
+  public lentBike(bikeID: number):Observable<String> {
+    return this.httpClient.get<String>(this.apiURL + 'update.php/?f=rent&email=' + this.getEMail() + '&bike=' + bikeID + '&token='+this.getToken());
   }
+
+  public returnBike(bikeID: number, stationID: number) {
+    this.httpClient.get(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
+  }
+
 
   private getEMail(): string | undefined {
     this.auth.user$.pipe(map(user => { this.email = user?.email })).subscribe();
     return this.email;
-  }
-
-  public returnBike(bikeID: number, stationID: number) {
-    let email: string | undefined = '';
-    this.auth.user$.subscribe(user => email = user?.email)
-    this.httpClient.post(this.apiURL + 'update.php/?f=returnbike&email=' + email + '&bike=' + bikeID + '&station=', stationID)
   }
 
   private getToken(): string | undefined {
@@ -100,6 +99,5 @@ export class DataService {
         this.updateObservables();
       })
     }, 5000)
-    console.log(this.getToken())
   }
 }
