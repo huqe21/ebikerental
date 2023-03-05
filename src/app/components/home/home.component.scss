@@ -1,0 +1,55 @@
+h2.center{
+    text-align: center;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    left: 0%;
+    right: 0%;
+    filter:brightness(30%);
+}
+
+.container {
+   
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  .centered {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size:50px;
+    font-weight: 700;
+    color: #d3a124 !important;
+    
+  }
+
+  .bottom{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size:18px;
+    font-weight: 500;
+    color: white!important;
+  }
+
+  .button {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #d3a124; 
+    border: none;
+    color: black;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 4px;
+  }
