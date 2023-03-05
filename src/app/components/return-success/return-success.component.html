@@ -9,16 +9,18 @@
 
             </google-map>
         </div>
-        <div class="confirmation">
+        <span *ngFor=" let bike of (dataService.bike$ | ngrxPush)">
+            <span *ngIf=" bike.id== +getBikeID()">
+                <div class="confirmation">
             <h2>Thank you for renting with us!</h2>
-            <p>Your E-Bike rental has been confirmed. </p>
+            <p>The return of Your Bike at {{station.name}} has been successfull. You will receive an invoice via E-Mail shortly. </p>
             <div class="confirmation-details">
                 <div class="confirmation-detail">
-                    <span class="confirmation-detail-label">Bike Model:</span>
-                    <span class="confirmation-detail-value">Bike Model Name</span>
+                    <span class="confirmation-detail-label">E-Bike Model:</span>
+                    <span class="confirmation-detail-value">E-Bike {{bike.id}}</span>
                 </div>
                 <div class="confirmation-detail">
-                    <span class="confirmation-detail-label">Standort</span>
+                    <span class="confirmation-detail-label">Rückgabeort</span>
                     <span class="confirmation-detail-value"> {{station.name}}</span>
                 </div>
                 <div class="confirmation-detail">
@@ -27,5 +29,7 @@
                 </div>
             </div>
         </div>
+        </span>
+    </span>
     </span>
 </span>

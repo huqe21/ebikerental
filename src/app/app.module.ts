@@ -14,6 +14,8 @@ import { ReturnComponent } from './components/return/return.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
+import { PushModule, LetModule } from '@ngrx/component';
+import { ReturnSuccessComponent } from './components/return-success/return-success.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,13 @@ import { AboutComponent } from './components/about/about.component';
     ReturnComponent,
     HomeComponent,
     AboutComponent,
+    ReturnSuccessComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    PushModule,
+    LetModule,
     GoogleMapsModule,
     MapsModule,
     HttpClientModule,

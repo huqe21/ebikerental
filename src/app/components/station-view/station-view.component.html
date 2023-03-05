@@ -3,18 +3,21 @@
         <app-googlemaps></app-googlemaps>
     </div>
     <div class="info">
-        <div *ngFor=" let station of (dataService.station$|async)">
+        <div *ngFor=" let station of (dataService.station$| ngrxPush)">
             <div *ngIf="station.id == getCurrentStationID()">
                 <h2>{{station.name }}</h2>
 
             </div>
 
         </div>
-        <div *ngFor="let bike of (dataService.bike$ |async)" class="info">
+        <div *ngFor="let bike of (dataService.bike$ |ngrxPush)" class="info">
             <div *ngIf="getCurrentStationID()== bike.station">
                 <div (click)="ausleihen(bike)" class="card">
                     <h3> {{bike.name}}</h3>
-                    <span class="price"> 0.10€/Minute</span>
+                    <span *ngIf="bike.premium==1">Premium E-Bike</span>
+
+                    <span *ngIf="bike.premium==0 "class="price"> 0.10€/Minute</span>
+                    <span *ngIf="bike.premium==1 "class="price"> 0.15 €/Minute</span>
 
                 </div>
             </div>
