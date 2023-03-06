@@ -6,9 +6,10 @@ img{
     max-width: 100%;
     height: auto;
     margin: 0;
-    left: 0%;
-    right: 0%;
-    filter:brightness(30%);
+    padding: 0;
+    left: 0px;
+    right: 0px;
+    filter:brightness(30%); 
 }
 
 .container {
@@ -27,7 +28,6 @@ img{
     color: #d3a124 !important;
     
   }
-
   .bottom{
     position: absolute;
     top: 50%;
@@ -53,3 +53,19 @@ img{
     font-size: 18px;
     border-radius: 4px;
   }
+
+
+.content {
+  height:auto;
+  background:white;
+  width:900px;
+  margin:25px auto;
+  text-align:justify;
+  font-size: 18px;
+}
+
+h3{
+  font-size:18px;
+  font-weight: 700;
+  color: #d3a124 !important;
+}
