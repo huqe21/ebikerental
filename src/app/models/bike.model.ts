@@ -3,4 +3,5 @@ export interface Bike {
     name: string;
     station: number;
     premium: number;
+    batteryLevel: number;
 }

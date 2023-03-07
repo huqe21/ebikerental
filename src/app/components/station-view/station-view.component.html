@@ -2,7 +2,7 @@
     <div class="maps">
         <app-googlemaps></app-googlemaps>
     </div>
-    <div class="info">
+    <div class="info" *ngIf="(userRent$| ngrxPush)">
         <div *ngFor=" let station of (dataService.station$| ngrxPush)">
             <div *ngIf="station.id == getCurrentStationID()">
                 <h2>{{station.name }}</h2>
@@ -15,10 +15,8 @@
                 <div (click)="ausleihen(bike)" class="card">
                     <h3> {{bike.name}}</h3>
                     <span *ngIf="bike.premium==1">Premium E-Bike</span>
-
-                    <span *ngIf="bike.premium==0 "class="price"> 0.10€/Minute</span>
-                    <span *ngIf="bike.premium==1 "class="price"> 0.15 €/Minute</span>
-
+                    {{ bike.batteryLevel}}
+                    <span class="price"> {{pricingService.getPrice(bike)}}€/Minute</span>
                 </div>
             </div>
         </div>
@@ -26,5 +24,12 @@
             <button (click)="goBack()">Back</button>
         </div>
 
+    </div>
+
+    <div *ngIf="!(userRent$ |ngrxPush)" class="info">
+            <div class="card">
+                <h3> Du hast bereits ein E-Bike ausgeliehen!</h3>
+                <p>Gebe es zurück um ein neues E-Bike auszuleihen.</p>
+        </div>
     </div>
 </div>
