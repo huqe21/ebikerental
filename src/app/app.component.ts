@@ -10,6 +10,5 @@ import { DataService } from './services/data.service';
 export class AppComponent {
   title = 'e-Bike Rental';
   constructor(public auth: AuthService, private dataService: DataService){
-    dataService.user$.subscribe(console.log)
   }
 }

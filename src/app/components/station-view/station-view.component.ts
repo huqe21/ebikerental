@@ -1,7 +1,9 @@
 import { AfterContentInit, AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { map } from 'rxjs';
 import { Bike } from 'src/app/models/bike.model';
 import { DataService } from 'src/app/services/data.service';
+import { PricingService } from 'src/app/services/pricing.service';
 
 @Component({
   selector: 'app-station-view',
@@ -10,7 +12,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class StationViewComponent {
   private activeStation: string= '';
-  constructor(private router: Router, private activeRoute: ActivatedRoute, public dataService: DataService) { }
+  public userRent$ = this.dataService.user$.pipe(map(user=> { if(user.bike==null){return true;}else{return false;}}))
+  constructor(private router: Router, private activeRoute: ActivatedRoute, public dataService: DataService, public pricingService: PricingService) { }
   getCurrentStationID(): number {
     this.activeRoute.queryParamMap.subscribe(params => this.activeStation= params.get('id')||'')
     return +this.activeStation;
