@@ -1,71 +1,82 @@
-h2.center{
-    text-align: center;
+p{
+  text-align: justify;
+  margin-top: 10px;
 }
-
-img{
-    max-width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    left: 0px;
-    right: 0px;
-    filter:brightness(30%); 
-}
-
-.container {
-   
-    position: relative;
-    text-align: center;
-    color: white;
-  }
-  .centered {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size:50px;
-    font-weight: 700;
-    color: #d3a124 !important;
-    
-  }
-  .bottom{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size:18px;
-    font-weight: 500;
-    color: white!important;
-  }
-
-  .button {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #d3a124; 
-    border: none;
-    color: black;
-    padding: 15px 50px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    border-radius: 4px;
-  }
-
-
-.content {
-  height:auto;
-  background:white;
-  width:900px;
-  margin:25px auto;
-  text-align:justify;
-  font-size: 18px;
-}
-
-h3{
-  font-size:18px;
+h1 {
+  font-size: 50px;
   font-weight: 700;
   color: #d3a124 !important;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: white !important;
+  text-align: center;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #d3a124 !important;
+}
+
+h4 {
+  padding-top:1px;
+  font-size: 18px;
+  font-weight: 500;
+  color: white !important;
+}
+
+.button {
+  position:absolute ;
+  margin-top: 60px;
+  margin-bottom: 80px;
+  transform: translate(-50%, -50%);
+  background-color: #d3a124;
+  border: none;
+  color: white;
+  padding: 15px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 4px;
+}
+
+.column {
+  float: left;
+  border-radius: 4px;
+  width: 21%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 30px;
+  padding: 10px;
+  height: auto;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.cover-1 {
+  background-image: url('landingpage.png');
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-size: cover;
+  height: 200vh;
+  filter: brightness(30%);
+}
+
+.cover-text {
+  font-size: 18px;
+  color: #FFFFFF;
+  text-shadow: 0 0 30px #000000;
+  position: absolute;
+  text-align: center;
+  left: 10%;
+  right: 10%;
+  top: 9%;
 }

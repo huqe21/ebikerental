@@ -1,17 +1,22 @@
-<div class ="content">
-  <h3>
-  Leihen Sie ein EBike bei E-Bike Rent Mannheim - einfach, schnell und bequem!
-  </h3> 
-  Wählen Sie einfach die Station aus, an der Sie Ihr EBike ausleihen wollen. Klicken 
-  Sie anschließend auf das Fahrrad und bestätigen Sie die Buchung. 
-  <br>Ab diesem Zeitpunkt wird die Zeit gezählt. 
-</div>
+<section id="slide-1">
+  <div class="cover-1"></div>
+  <div class="cover-text">
+
+    <google-map height="600px" width=null [zoom]="zoom" [center]="center" [options]="options">
+
+      <map-marker *ngFor="let station of (dataService.station$ | ngrxPush)"
+        [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
+        [label]='getStationText(station)' (mapClick)="goToStation(station)" [icon]="markerIcon"> 
+      </map-marker>
+    </google-map>
 
 
-<google-map height="600px" width=null [zoom]="zoom" [center]="center" [options]="options">
+    <h3>
+      Leihe Dein EBike bei E-Bike Rent Mannheim - einfach, schnell und bequem!
+    </h3>
+    Wähle einfach die Station aus, an das EBike ausliehen werden soll. Klicke
+    anschließend auf das Fahrrad und bestätige die Buchung.
+    <br>Ab diesem Zeitpunkt wird die Zeit gezählt.
 
-  <map-marker *ngFor="let station of (dataService.station$ | ngrxPush)"
-    [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
-    [label]='getStationText(station)' (mapClick)="goToStation(station)" [icon]="markerIcon"> 
-  </map-marker>
-</google-map>
+  </div>
+</section>

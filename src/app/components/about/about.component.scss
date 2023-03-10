@@ -11,4 +11,31 @@
     font-size:18px;
     font-weight: 700;
     color: #d3a124 !important;
+    text-align: center;
   }
+
+
+#slide-1{
+    position:relative;
+}
+
+.cover-1 {
+  background-image: url('landingpage.png');
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-size: cover;
+  height: 100vh;
+  filter: brightness(30%);
+}
+
+
+.cover-text {
+    font-size: 18px;
+    color: #FFFFFF;
+    text-shadow: 0 0 30px #000000;
+    position: absolute;
+    text-align:  justify;
+    left: 10%;
+    right: 10%;
+    top: 9%;
+}

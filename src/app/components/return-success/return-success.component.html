@@ -4,7 +4,7 @@
             <google-map height="400px" width="100%" [zoom]="15"
                 [center]="createLatLng(station.latitude, station.longitude)" [options]="options">Í
                 <map-marker [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
-                    [icon]="markerIcon"> 
+                    [icon]="markerIcon">
                 </map-marker>
 
             </google-map>
@@ -28,6 +28,7 @@
                     <span class="confirmation-detail-value">$250</span>
                 </div>
             </div>
+            <div style="padding: 50px 0"></div>
         </div>
         </span>
     </span>
