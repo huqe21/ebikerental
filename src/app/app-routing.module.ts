@@ -11,7 +11,7 @@ import { ReturnSuccessComponent } from './components/return-success/return-succe
 
 const routes: Routes = [
   {path: 'station', component: StationViewComponent},
-  {path: 'ausleihen', component: GooglemapsComponent},
+  {path: 'rent', component: GooglemapsComponent},
   {path: 'checkout', component: RentComponent},
   {path: 'success', component: SuccessComponent},
   {path: 'return', component: ReturnComponent},

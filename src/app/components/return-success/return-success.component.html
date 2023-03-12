@@ -13,18 +13,19 @@
             <span *ngIf=" bike.id== +getBikeID()">
                 <div class="confirmation">
             <h2>Thank you for renting with us!</h2>
-            <p>The return of Your Bike at {{station.name}} has been successfull. You will receive an invoice via E-Mail shortly. </p>
+            <p>Die Rückgabe deines E-Bikes an der Station {{station.name}} war erfolgreich. Du wirst die Rechnung in kürze via E-Mail erhallten. </p>
             <div class="confirmation-details">
                 <div class="confirmation-detail">
-                    <span class="confirmation-detail-label">E-Bike Model:</span>
-                    <span class="confirmation-detail-value">E-Bike {{bike.id}}</span>
+                    <span class="confirmation-detail-label">E-Bike Modell:</span>
+                    <span *ngIf="bike.premium == 0" class="confirmation-detail-value"> Standard E-Bike</span>
+                    <span *ngIf="bike.premium == 1" class="confirmation-detail-value">Premium E-Bike</span>
                 </div>
                 <div class="confirmation-detail">
-                    <span class="confirmation-detail-label">Rückgabeort</span>
+                    <span class="confirmation-detail-label">Rückgabeort:</span>
                     <span class="confirmation-detail-value"> {{station.name}}</span>
                 </div>
                 <div class="confirmation-detail">
-                    <span class="confirmation-detail-label">Total Price:</span>
+                    <span class="confirmation-detail-label">Gesamtpreis:</span>
                     <span class="confirmation-detail-value">$250</span>
                 </div>
             </div>

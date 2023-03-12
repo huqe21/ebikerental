@@ -6,7 +6,7 @@
 
       <map-marker *ngFor="let station of (dataService.station$ | ngrxPush)"
         [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
-        [label]='getStationText(station)' (mapClick)="goToStation(station)" [icon]="markerIcon"> 
+        [label]='getStationText(station)' (mapClick)="goToStation(station)" [icon]="getMarker(station)"> 
       </map-marker>
     </google-map>
 

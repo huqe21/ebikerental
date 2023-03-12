@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Station } from 'src/app/models/station.model';
 import { DataService } from 'src/app/services/data.service';
+import { PricingService } from 'src/app/services/pricing.service';
 
 @Component({
   selector: 'app-rent',
@@ -11,7 +12,7 @@ import { DataService } from 'src/app/services/data.service';
 export class RentComponent{
   private activeBike: string= '';
   private stations:Station[]= new Array<Station>();
-  constructor(private router: Router, private activeRoute: ActivatedRoute, public dataService: DataService) { }
+  constructor(private router: Router, private activeRoute: ActivatedRoute, public dataService: DataService, public pricingService: PricingService) { }
 
   
   getCurrentBikeID(): number {

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Station } from 'src/app/models/station.model';
-import { User } from 'src/app/models/user.model';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,18 +10,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./return.component.scss']
 })
 export class ReturnComponent implements OnInit {
-  public currentStation$: Observable<Station> = this.dataService.station$.pipe(map(stations => {
-    console.log(stations);
-        console.log(this.selectedStation)
-    stations.forEach(station => {
-      if (station.id == this.selectedStation) {
-        console.log(station);
-        console.log(this.selectedStation)
-        this.finalstation = station;
-      }
-    });
-    return this.finalstation;
-  }));
+  stationFull: boolean = false;
   zoom: number = 16;
   finalstation!: Station;
   defaultZoom: number = 15;
@@ -34,11 +22,21 @@ export class ReturnComponent implements OnInit {
   returnBike(stationID: number, bikeID: number): void {
     const temp = this.dataService.returnBike(bikeID, stationID).subscribe();
     this.router.navigate(['return-success'], { queryParams: { bikeID: bikeID, stationID: stationID } });
-    temp.unsubscribe();
+    temp.unsubscribe();;
 
   }
 
-  constructor(public dataService: DataService, private router: Router) {
+  checkStation(station: Station){
+    if(station.countOfBikes==station.maxCountOfBikes)
+    {
+      this.stationFull=true;
+    }
+    else{
+      this.stationFull=false;
+    }
+  }
+
+  constructor(public dataService: DataService, public router: Router) {
   }
 
   ngOnInit(): void {
@@ -77,5 +75,10 @@ export class ReturnComponent implements OnInit {
   createLatLng(p1: number, p2: number): google.maps.LatLng {
     return new google.maps.LatLng(p1, p2);
   }
-
+  getMarker(station: Station){
+    if(station.countOfBikes<station.maxCountOfBikes){
+     return { url: "assets/marker.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
+    }
+    return { url: "assets/marker_red.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
+  }
 }

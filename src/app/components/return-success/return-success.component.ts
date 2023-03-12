@@ -41,12 +41,14 @@ export class ReturnSuccessComponent {
 
   getBikeID(): string {
     let activeBike: string = '';
-    this.activeRoute.queryParamMap.subscribe(params => activeBike = params.get('bikeID') || '')
+    let temp=this.activeRoute.queryParamMap.subscribe(params => activeBike = params.get('bikeID') || '')
+    temp.unsubscribe();
     return activeBike;
   }
   getStationID(): string {
     let station: string = '';
-    this.activeRoute.queryParamMap.subscribe(params => station = params.get('stationID') || '');
+    let temp=this.activeRoute.queryParamMap.subscribe(params => station = params.get('stationID') || '');
+    temp.unsubscribe();
     return station;
 
   }

@@ -23,7 +23,7 @@ export class StationViewComponent {
   }
 
   public goBack() {
-    this.router.navigate(['']);
+    this.router.navigate(['rent']);
   }
 
   public ausleihen(bike: Bike)

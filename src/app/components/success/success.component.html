@@ -11,19 +11,20 @@
         </div>
         <div class="confirmation">
             <h2>Thank you for renting with us!</h2>
-            <p>Your E-Bike rental has been confirmed. </p>
+            <p>Dein E-Bike Rental wurde bestätigt, du kanst jetzt losfahren! </p>
             <div class="confirmation-details">
                 <div class="confirmation-detail">
-                    <span class="confirmation-detail-label">Bike Model:</span>
-                    <span class="confirmation-detail-value">Bike Model Name</span>
+                    <span class="confirmation-detail-label">Bike Modell:</span>
+                    <span *ngIf="getBikebyID(+getBikeID()).premium == 0" class="confirmation-detail-value"> Standard E-Bike</span>
+                    <span *ngIf="getBikebyID(+getBikeID()).premium == 1" class="confirmation-detail-value">Premium E-Bike</span>
                 </div>
                 <div class="confirmation-detail">
                     <span class="confirmation-detail-label">Standort</span>
                     <span class="confirmation-detail-value"> {{station.name}}</span>
                 </div>
                 <div class="confirmation-detail">
-                    <span class="confirmation-detail-label">Total Price:</span>
-                    <span class="confirmation-detail-value">$250</span>
+                    <span class="confirmation-detail-label">Preis:</span>
+                    <span class="confirmation-detail-value">{{ pricingService.getPriceById(+getBikeID())}}€/min</span>
                 </div>
                 <div style="padding: 50px 0"></div>
             </div>

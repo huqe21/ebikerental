@@ -3,7 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { } from '@angular/google-maps';
 import { Station } from 'src/app/models/station.model';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService, User } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-googlemaps',
@@ -11,8 +11,6 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./googlemaps.component.scss']
 })
 export class GooglemapsComponent implements AfterViewInit {
-
-  markerIcon = { url: "assets/marker.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
 
   zoom!: number;
   center!: google.maps.LatLng;
@@ -66,6 +64,13 @@ export class GooglemapsComponent implements AfterViewInit {
     }
   }
 
+  getMarker(station: Station){
+    if(station.countOfBikes>0){
+     return { url: "assets/marker.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
+    }
+    return { url: "assets/marker_red.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
+  }
+
   goToStation(station: Station) {
     let isauth: boolean = false;
     this.auth.isAuthenticated$.subscribe(val => isauth = val);
@@ -74,8 +79,19 @@ export class GooglemapsComponent implements AfterViewInit {
       this.auth.loginWithRedirect();
     }
     else {
+      let user;
+    
+      this.dataService.user$.subscribe(val => user = val);
+      if(!user)
+      {
+        this.auth.user$.subscribe(val => {
+         this.dataService.addUser(val?.nickname, val?.name, val?.family_name,val?.address, val?.email).subscribe()
+        })
+
+      }
       this.router.navigate(['station'], { queryParams: { id: station.id } });
     }
+    
   }
 
 

@@ -10,7 +10,7 @@
             </div>
 
         </div>
-        <div *ngFor="let bike of (dataService.bike$ |ngrxPush)" class="info">
+        <div *ngFor="let bike of (dataService.bike$ |ngrxPush)">
             <div *ngIf="getCurrentStationID()== bike.station">
                 <div (click)="ausleihen(bike)" class="card">
                     <h3> {{bike.name}}</h3>

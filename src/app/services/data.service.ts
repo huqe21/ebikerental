@@ -32,7 +32,7 @@ export class DataService {
   constructor(private httpClient: HttpClient, private auth: AuthService) {
     this.getBikes().subscribe(bikes => this.bike$$.next(bikes));
     this.getUsers().subscribe(users => this.user$$.next(users));
-    this.getStations().subscribe(stations => this.station$$.next(stations));
+  this.getStations().subscribe(stations => this.station$$.next(stations));
     this.getEMail();
     this.getToken();
     this.updateObservables();
@@ -56,25 +56,29 @@ export class DataService {
     return this.httpClient.get<String>(this.apiURL + 'update.php/?f=rent&email=' + this.getEMail() + '&bike=' + bikeID + '&token='+this.getToken());
   }
 
-  public returnBike(bikeID: number, stationID: number):Observable<String> {
-    console.log(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
+  public returnBike(bikeID: number, stationID: number){
+    // console.log(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
    return this.httpClient.get<String>(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
   }
-
+  public addUser(username?: string, firstName?: string, lastName?: string, address?: string, email?: string)
+  {
+    return this.httpClient.get(this.apiURL+'insert.php/?username='+username+'&firstname='+firstName+'&lastname='+lastName+'&address='+address+'&email='+email)
+  }
 
   private getEMail(): string | undefined {
-    this.auth.user$.pipe(map(user => { this.email = user?.email })).subscribe();
+ this.auth.user$.pipe(map(user => { this.email = user?.email })).subscribe();
     return this.email;
   }
 
   private getToken(): string | undefined {
-    this.auth.idTokenClaims$.pipe(map(token => this.token = token?.__raw)).subscribe()
+   let temp = this.auth.idTokenClaims$.pipe(map(token => this.token = token?.__raw)).subscribe()
+   temp.unsubscribe
     return this.token;
   }
   private updateObservables() {
 
     setTimeout(() => {
-      this.getStations().subscribe(stations => {
+  this.getStations().subscribe(stations => {
         if (JSON.stringify(stations) != JSON.stringify(this.stationVergleich)) {
           this.station$$.next(stations);
           this.stationVergleich = stations;
@@ -83,22 +87,23 @@ export class DataService {
     }, 5000)
 
     setTimeout(() => {
-      this.getUsers().subscribe(users => {
+     this.getUsers().subscribe(users => {
         if (JSON.stringify(users) != JSON.stringify(this.userVergleich)) {
           this.userVergleich = users;
           this.user$$.next(users);
         }
       }
       )
+      
     }, 5000)
     setTimeout(() => {
-      this.getBikes().subscribe(bikes => {
+     this.getBikes().subscribe(bikes => {
         if (JSON.stringify(bikes) != JSON.stringify(this.bikeVergleich)) {
           this.bike$$.next(bikes);
           this.bikeVergleich = bikes;
         }
         this.updateObservables();
       })
-    }, 5000)
+         }, 5000)
   }
 }

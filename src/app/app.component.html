@@ -4,11 +4,11 @@
   <div class="title">E-Bike Rent Mannheim</div>
   <div class="spacer"></div>
   <nav>
-    <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
-    <a routerLink="/ausleihen" routerLinkActive="active" ariaCurrentWhenActive="page"> Rent a E-Bike</a>
-    <a *ngIf="(auth.isAuthenticated$ | ngrxPush)" routerLink="/return" routerLinkActive="active"
+    <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" ariaCurrentWhenActive="page">Home</a>
+    <a routerLink="/rent" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" ariaCurrentWhenActive="page"> Rent a E-Bike</a>
+    <a *ngIf="(auth.isAuthenticated$ | ngrxPush)" routerLink="/return" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
       ariaCurrentWhenActive="page">Return E-Bike</a>
-    <a routerLink="/about-us" routerLinkActive="active" ariaCurrentWhenActive="page">About Us</a>
+    <a routerLink="/about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" ariaCurrentWhenActive="page">About Us</a>
   </nav>
   <app-auth-button class="auth-button"></app-auth-button>
 
