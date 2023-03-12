@@ -3,7 +3,8 @@ import { DataService } from 'src/app/services/data.service';
 import { } from '@angular/google-maps';
 import { Station } from 'src/app/models/station.model';
 import { Router } from '@angular/router';
-import { AuthService, User } from '@auth0/auth0-angular';
+import { AuthService } from '@auth0/auth0-angular';
+import { mapStyle } from 'src/app/const/mapStyle';
 
 @Component({
   selector: 'app-googlemaps',
@@ -21,7 +22,6 @@ export class GooglemapsComponent implements AfterViewInit {
     this.zoom = 15;
     this.center = this.createLatLng(49.488160, 8.465841);
     this.options = {
-      mapTypeId: 'hybrid',
       zoomControl: false,
       scrollwheel: true,
       disableDoubleClickZoom: true,
@@ -38,15 +38,7 @@ export class GooglemapsComponent implements AfterViewInit {
         strictBounds: true
       },
       clickableIcons: false,
-      styles: [{ "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative.land_parcel", "stylers": [{ "visibility": "off" }] }
-        , {
-        "featureType": "road.highway",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },]
+      styles: mapStyle
 
     };
   }

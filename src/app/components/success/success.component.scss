@@ -2,6 +2,12 @@
     padding-left: 25%;
     padding-right: 25%;
 }
+.background{
+  background-image: url('../../../assets/landingpage1.png');
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-size: cover;
+}
 .confirmation {
     display: flex;
     flex-direction: column;

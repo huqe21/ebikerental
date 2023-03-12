@@ -1,4 +1,4 @@
-<span *ngFor="let station of (dataService.station$ | ngrxPush)">
+<div *ngFor="let station of (dataService.station$ | ngrxPush)" class="background">
     <span *ngIf="station.id.toString()=== getStationID()">
         <div class="maps">
             <google-map height="400px" width="100%" [zoom]="15"
@@ -30,4 +30,4 @@
             </div>
         </div>
     </span>
-</span>
+</div>

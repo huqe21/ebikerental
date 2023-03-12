@@ -1,6 +1,12 @@
 <div class="grid">
     <div class="maps">
-        <app-googlemaps></app-googlemaps>
+        <google-map height="600px" width="100%" [zoom]="zoom" [center]="center" [options]="options">
+
+            <map-marker *ngFor="let station of (dataService.station$ | ngrxPush)"
+              [position]="createLatLng(station.latitude,station.longitude)" [title]="station.name"
+              [label]='getStationText(station)' (mapClick)="goToStation(station)" [icon]="getMarker(station)"> 
+            </map-marker>
+          </google-map>
     </div>
     <div class="info" *ngIf="(userRent$| ngrxPush)">
         <div *ngFor=" let station of (dataService.station$| ngrxPush)">
@@ -10,7 +16,7 @@
             </div>
 
         </div>
-        <div *ngFor="let bike of (dataService.bike$ |ngrxPush)">
+        <div *ngFor="let bike of (dataService.bike$ |ngrxPush)" class="scroll">
             <div *ngIf="getCurrentStationID()== bike.station">
                 <div (click)="ausleihen(bike)" class="card">
                     <h3> {{bike.name}}</h3>

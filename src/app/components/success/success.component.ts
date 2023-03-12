@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
+import { mapStyle } from 'src/app/const/mapStyle';
 import { Bike } from 'src/app/models/bike.model';
 import { DataService } from 'src/app/services/data.service';
 import { PricingService } from 'src/app/services/pricing.service';
@@ -20,21 +21,12 @@ export class SuccessComponent {
   ngAfterViewInit(): void {
     this.options = {
       draggable: false,
-      mapTypeId: 'hybrid',
       zoomControl: false,
       scrollwheel: false,
       disableDoubleClickZoom: true,
       disableDefaultUI: true,
       clickableIcons: false,
-      styles: [{ "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative.land_parcel", "stylers": [{ "visibility": "off" }] }
-        , {
-        "featureType": "road.highway",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },]
+      styles: mapStyle
 
     };
   }

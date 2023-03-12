@@ -1,6 +1,10 @@
 .maps{
     padding-left: 25%;
     padding-right: 25%;
+    background-image: url('../../../assets/landingpage.png');
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-size: cover;
 }
 .confirmation {
     display: flex;

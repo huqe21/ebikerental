@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { mapStyle } from 'src/app/const/mapStyle';
 import { Station } from 'src/app/models/station.model';
 import { DataService } from 'src/app/services/data.service';
 
@@ -42,7 +43,6 @@ export class ReturnComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.station$.subscribe(val => this.stations = val);
     this.options = {
-      mapTypeId: 'hybrid',
       zoomControl: false,
       scrollwheel: true,
       disableDoubleClickZoom: true,
@@ -59,15 +59,7 @@ export class ReturnComponent implements OnInit {
         strictBounds: true
       },
       clickableIcons: false,
-      styles: [{ "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative.land_parcel", "stylers": [{ "visibility": "off" }] }
-        , {
-        "featureType": "road.highway",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },]
+      styles: mapStyle
 
     };
   }
@@ -76,9 +68,10 @@ export class ReturnComponent implements OnInit {
     return new google.maps.LatLng(p1, p2);
   }
   getMarker(station: Station){
-    if(station.countOfBikes<station.maxCountOfBikes){
-     return { url: "assets/marker.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
+    if(station.countOfBikes===station.maxCountOfBikes){
+      return { url: "assets/marker_red.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
+    
     }
-    return { url: "assets/marker_red.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
+    return { url: "assets/marker.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
   }
 }
