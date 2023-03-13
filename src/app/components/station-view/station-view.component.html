@@ -20,9 +20,19 @@
             <div *ngIf="getCurrentStationID()== bike.station">
                 <div (click)="ausleihen(bike)" class="card">
                     <h3> {{bike.name}}</h3>
-                    <span *ngIf="bike.premium==1">Premium E-Bike</span>
-                    {{ bike.batteryLevel}}
-                    <span class="price"> {{pricingService.getPrice(bike)}}€/Minute</span>
+                    <span *ngIf="bike.premium==1">Premium E-Bike</span> 
+                    <span style="display: flex; align-items: center;">
+                        <div style="flex:0.1;size: 2px;">
+                          <div *ngIf="bike.batteryLevel<=35"><img src="../../../assets/lowbattery.png" style="width: 30px;align-content: center;"></div>
+                          <div *ngIf="(bike.batteryLevel<=75 && bike.batteryLevel>35)"><img src="../../../assets/midbattery.png" style="width: 30px;"></div>
+                          <div *ngIf="bike.batteryLevel>75"><img src="../../../assets/fulbattery.png" style="width: 30px;"></div>
+                        </div>
+                        <div style="flex: 1;">
+                          <div class="battery">{{bike.batteryLevel}}% </div><div class="price"> {{pricingService.getPrice(bike)}}€/Minute</div>
+                        </div>
+                      </span>
+                      
+                    
                 </div>
             </div>
         </div>
