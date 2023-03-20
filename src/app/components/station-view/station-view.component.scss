@@ -66,6 +66,15 @@ h2{
     color: #f60;
     margin-top: auto;
     align-self: flex-end;
+    float:right;
+  }
+
+  .battery{
+    font-size: 24px;
+    color: #f60;
+    margin-top: auto;
+    align-self: flex-start;
+    float:left;
   }
 
   &:hover {

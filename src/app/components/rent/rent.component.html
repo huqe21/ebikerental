@@ -10,6 +10,7 @@
         <p>Standort: {{getStandort()}}</p>
         <div class="checkout-card-price">
           <span>Price: </span><span> {{pricingService.getPriceById(getCurrentBikeID())}}€/Min</span>
+          
         </div>
         <div class="checkout-card-button">
             <span><button (click)="ausleihen()">Kostenpflichtig Ausleihen</button></span>
