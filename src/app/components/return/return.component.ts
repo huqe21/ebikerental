@@ -21,9 +21,11 @@ export class ReturnComponent implements OnInit {
   markerIcon = { url: "assets/marker.png", size: new google.maps.Size(80, 80), scaledSize: new google.maps.Size(80, 80) };
 
   returnBike(stationID: number, bikeID: number): void {
-    const temp = this.dataService.returnBike(bikeID, stationID).subscribe();
-    this.router.navigate(['return-success'], { queryParams: { bikeID: bikeID, stationID: stationID } });
-    temp.unsubscribe();;
+    const temp = this.dataService.returnBike(bikeID, stationID).subscribe(val => {
+      this.router.navigate(['return-success'], { queryParams: { bikeID: bikeID, stationID: stationID, price: val.value } });
+    });
+    
+    // temp.unsubscribe();;
 
   }
 

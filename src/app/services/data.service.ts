@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { map, Observable, ReplaySubject } from 'rxjs';
 import { Bike } from '../models/bike.model';
+import { Price } from '../models/price.model';
 import { Station } from '../models/station.model';
 import { User } from '../models/user.model';
 
@@ -58,7 +59,7 @@ export class DataService {
 
   public returnBike(bikeID: number, stationID: number){
     // console.log(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
-   return this.httpClient.get<String>(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
+   return this.httpClient.get<Price>(this.apiURL + 'update.php/?f=returnbike&email=' + this.getEMail() + '&bike=' + bikeID + '&station='+ stationID + '&token='+this.getToken())
   }
   public addUser(username?: string, firstName?: string, lastName?: string, address?: string, email?: string)
   {

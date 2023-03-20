@@ -45,4 +45,10 @@ export class ReturnSuccessComponent {
 
   }
 
+  getPrice(): string{
+    let price= ''
+    let temp = this.activeRoute.queryParamMap.subscribe(params =>  price= params.get('price') || '');
+    return price;
+  }
+
 }
