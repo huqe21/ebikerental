@@ -12,7 +12,7 @@ import { User } from '../models/user.model';
 })
 export class DataService {
 
-  private apiURL: string = 'http://localhost:80/ebike-backend/';
+  private apiURL: string = 'http://localhost:80/ebike-backend/src/';
   private token: string | undefined;
   private email: string | undefined;
 
