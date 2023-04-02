@@ -11,11 +11,12 @@ import { RentComponent } from './components/rent/rent.component';
 import { SuccessComponent } from './components/success/success.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ReturnComponent } from './components/return/return.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { PushModule, LetModule } from '@ngrx/component';
 import { ReturnSuccessComponent } from './components/return-success/return-success.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { ReturnSuccessComponent } from './components/return-success/return-succe
   ],
   imports: [
     BrowserModule,
+    NgxCaptchaModule,
     FormsModule,
+    ReactiveFormsModule,
     PushModule,
     LetModule,
     GoogleMapsModule,

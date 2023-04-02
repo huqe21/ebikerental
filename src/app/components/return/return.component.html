@@ -21,7 +21,7 @@
     <span *ngrxLet="dataService.user$ as user" >
     <h1 class="title">Return Bike</h1>
     <form class="form-container">
-        <div class="form-group">
+        <div class="select">
             <label for="station-dropdown">Select Return Station for E-Bike {{user.bike}} :</label>
             <select id="station-dropdown" [(ngModel)]="selectedStation" name="station">
                 <option *ngFor="let station of stations" [value]="station.id">{{ station.name }}</option>
@@ -29,8 +29,16 @@
         </div>
         <span *ngIf="stationFull" class="error"> Diese Station ist leider Voll. Bitte wähle eine andere Station aus um dein E-Bike zurückzugeben! </span>
         <span *ngIf="user.bike==undefined" class="error">Bevor du ein E-Bike zurückgeben kannst, leihe bitte zuerst ein E-Bike aus! </span>
+        <form *ngIf="(!stationFull)&&user.bike!=undefined" [formGroup]="aFormGroup">
+            <ngx-recaptcha2 #captchaElem
+              siteKey="6Lfb7EglAAAAAGyTTrJlPY2Hk80b_djxo6DJ4DGe"
+              [useGlobalDomain]="false"
+              (success)="robot=true"
+              formControlName="recaptcha">
+            </ngx-recaptcha2>
+          </form>
     </form>
-    <button *ngIf="!stationFull&&!(user.bike==undefined)" class="return-button" (click)="returnBike(selectedStation, user.bike)">Return E-Bike</button>
+    <button *ngIf="!stationFull&&!(user.bike==undefined)&&robot" class="return-button" (click)="returnBike(selectedStation, user.bike)">Return E-Bike</button>
     <button *ngIf="user.bike==undefined" class="return-button" (click)="router.navigate(['rent'],{})">Rent E-Bike</button>
 </span>
 <div style="padding: 50px 0"></div>

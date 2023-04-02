@@ -1,4 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Station } from 'src/app/models/station.model';
 import { DataService } from 'src/app/services/data.service';
@@ -9,10 +10,19 @@ import { PricingService } from 'src/app/services/pricing.service';
   templateUrl: './rent.component.html',
   styleUrls: ['./rent.component.scss']
 })
-export class RentComponent{
+export class RentComponent implements OnInit{
   private activeBike: string= '';
   private stations:Station[]= new Array<Station>();
-  constructor(private router: Router, private activeRoute: ActivatedRoute, public dataService: DataService, public pricingService: PricingService) { }
+  public aFormGroup: FormGroup;
+  public robot: boolean = false;
+  constructor(private router: Router, private activeRoute: ActivatedRoute, public dataService: DataService, public pricingService: PricingService, public formBuilder: FormBuilder) {
+    this.aFormGroup = this.formBuilder.group({
+      recaptcha: ['', Validators.required]
+    });
+   }
+  ngOnInit(): void {
+    
+  }
 
   
   getCurrentBikeID(): number {
