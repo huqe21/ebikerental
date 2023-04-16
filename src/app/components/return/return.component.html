@@ -19,10 +19,10 @@
         </span>
     </span>
     <span *ngrxLet="dataService.user$ as user" >
-    <h1 class="title">Return Bike</h1>
+    <h1 class="title">Return E-Bike</h1>
     <form class="form-container">
         <div class="select">
-            <label for="station-dropdown">Select Return Station for E-Bike {{user.bike}} :</label>
+            <label for="station-dropdown">Wähle die Rückgabestation aus {{user.bike}} :</label>
             <select id="station-dropdown" [(ngModel)]="selectedStation" name="station">
                 <option *ngFor="let station of stations" [value]="station.id">{{ station.name }}</option>
             </select>
@@ -39,7 +39,7 @@
           </form>
     </form>
     <button *ngIf="!stationFull&&!(user.bike==undefined)&&robot" class="return-button" (click)="returnBike(selectedStation, user.bike)">Return E-Bike</button>
-    <button *ngIf="user.bike==undefined" class="return-button" (click)="router.navigate(['rent'],{})">Rent E-Bike</button>
+    <button *ngIf="user.bike==undefined" class="return-button" (click)="router.navigate(['rent'],{})">Rent a E-Bike</button>
 </span>
 <div style="padding: 50px 0"></div>
 </div>
