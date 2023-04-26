@@ -42,8 +42,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     HttpClientModule,
     AppRoutingModule,
     AuthModule.forRoot({
-      domain: 'dev-jau5d5r7zymxt44k.us.auth0.com',
-      clientId: 'H6qwa66sGSg72AeC5JCfoJeR6ADQ0Qhh',
+      domain: '',
+      clientId: '',
       authorizationParams: {
         redirect_uri: window.location.origin
       }
